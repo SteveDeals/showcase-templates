@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# E-commerce Template System
 
-## Getting Started
+## Adding a New Template
 
-First, run the development server:
+### 1. Template Location
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+All templates should be added in `src/components/templates/[your-template-name]`
+
+### 2. Required Files
+
+```
+src/components/templates/[your-template-name]/
+├── index.tsx         # Main template component
+├── components/       # Template-specific components
+└── styles/          # Template-specific styles (if any)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Register Your Template
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Add your template information in `src/mock-data/templates.ts`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```typescript
+{
+  id: "your-template-id",
+  name: "Your Template Name",
+  description: "Brief description of your template",
+  category: "modern" | "minimal" | "classic" | "bold",
+  previewImage: "/path/to/preview-image.jpg",
+  productDisplay: {
+    gridStyle: "How products are arranged",
+    imageDisplay: {
+      aspectRatio: "Image dimensions (e.g., '1:1')",
+      hoverEffect: "What happens on hover",
+      galleryStyle: "How multiple images are shown"
+    },
+    infoDisplay: {
+      pricing: "How prices are shown",
+      variantSelection: "How variants are selected",
+      stockDisplay: "How stock is displayed"
+    }
+  },
+  layout: {
+    productGrid: "Grid layout style",
+    filtering: "How filtering works",
+    sorting: "Sorting mechanism",
+    pagination: "Pagination style"
+  }
+}
+```
 
-## Learn More
+### 4. Template Requirements
 
-To learn more about Next.js, take a look at the following resources:
+Your template must:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Use the shared product data structure from `src/types/product.ts`
+- Support all product features (multiple images, variants, etc.)
+- Be responsive (mobile, tablet, desktop)
+- Follow accessibility guidelines
+- Use Tailwind CSS for styling
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 5. Example Implementation
 
-## Deploy on Vercel
+```typescript
+// src/components/templates/your-template/index.tsx
+import React from 'react';
+import { Product } from '../../../types/product';
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+interface Props {
+  products: Product[];
+  // Add any template-specific props
+}
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+export const YourTemplate: React.FC<Props> = ({ products }) => {
+  return (
+    // Your template implementation
+  );
+};
+```
+
+### 6. Testing Your Template
+
+1. Add your template to the showcase
+2. Test with different product configurations
+3. Test responsive behavior
+4. Verify all features work (filtering, sorting, etc.)
+
+### 7. Shared Resources
+
+- Product types: `src/types/product.ts`
+- Common UI components: `src/components/ui/`
+- Mock data: `src/mock-data/products.ts`
+
+### 8. Best Practices
+
+- Keep template-specific code in your template directory
+- Use TypeScript for type safety
+- Follow the existing naming conventions
+- Document any unique features or requirements
+- Test on multiple devices and browsers

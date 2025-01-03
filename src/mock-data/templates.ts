@@ -1,6 +1,9 @@
 import { Template } from "../types/template";
 
-export const templateList = {
+export const templateList: {
+  templates: Template[];
+  categories: readonly ["modern", "minimal", "classic", "bold"];
+} = {
   templates: [
     {
       id: "simple-store",

@@ -10,7 +10,6 @@ interface SimpleStoreProps {
 export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
   const [selectedCategory, setSelectedCategory] =
     useState<ProductCategory>('all');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const filteredProducts =
     selectedCategory === 'all'
@@ -101,7 +100,7 @@ export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
               href="#"
               className="text-gray-500 hover:text-gray-900 text-sm font-medium"
             >
-              New Arrivals
+              What&apos;s New
             </a>
             <a
               href="#"

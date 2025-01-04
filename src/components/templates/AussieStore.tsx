@@ -16,8 +16,7 @@ type SortOption =
 type ViewOption = 16 | 32 | 64 | 128;
 
 export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
-  const [selectedCategory, setSelectedCategory] =
-    useState<ProductCategory>('all');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [sortBy, setSortBy] = useState<SortOption>('newest');
   const [itemsPerPage, setItemsPerPage] = useState<ViewOption>(32);
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);

@@ -10,11 +10,20 @@ export interface Product {
   description: string;
   price: number;
   images: ProductImage[];
-  category: string;
+  category: ProductCategory;
   variants?: {
     name: string;
     value: string;
   }[];
+  features?: string[];
+  colors?: string[];
+  sizes?: string[];
 }
 
-export type ProductCategory = "clothing" | "accessories" | "all";
+export type ProductCategory =
+  | 'all'
+  | 'new-arrivals'
+  | 'clothing'
+  | 'shoes'
+  | 'accessories'
+  | 'sale';

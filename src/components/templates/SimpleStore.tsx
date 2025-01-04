@@ -149,7 +149,7 @@ export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
         {/* Title and Count */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-normal text-gray-900">
-            Women's Clothing & Accessories
+            Women&apos;s Clothing & Accessories
           </h1>
           <p className="text-sm text-gray-500">
             {filteredProducts.length} Products

@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+ 
 import { Product } from '../../types/product';
+ 
 import Image from 'next/image';
 
 interface AussieStoreProps {
@@ -16,7 +18,9 @@ type SortOption =
 type ViewOption = 16 | 32 | 64 | 128;
 
 export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
+ 
   const [selectedCategory] = useState('all');
+ 
   const [sortBy, setSortBy] = useState<SortOption>('newest');
   const [itemsPerPage, setItemsPerPage] = useState<ViewOption>(32);
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
@@ -207,14 +211,18 @@ export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
             </li>
             <li>
               <a href="#" className="text-[#FF5733] hover:text-[#E64A2E]">
-                Women&apos;s Fashion
+ 
+                Women's Fashion
+ 
               </a>
             </li>
             <li>
               <span className="text-gray-400">/</span>
             </li>
             <li>
-              <span className="text-gray-900">Women&apos;s Dresses</span>
+ 
+              <span className="text-gray-900">Women's Dresses</span>
+ 
             </li>
           </ol>
         </nav>
@@ -230,31 +238,41 @@ export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
                     href="#"
                     className="block text-[#FF5733] hover:text-[#E64A2E]"
                   >
-                    Women&apos;s Casual
+ 
+                    Women's Casual
+ 
                   </a>
                   <a
                     href="#"
                     className="block text-[#FF5733] hover:text-[#E64A2E]"
                   >
-                    Women&apos;s Formal
+ 
+                    Women's Formal
+ 
                   </a>
                   <a
                     href="#"
                     className="block text-[#FF5733] hover:text-[#E64A2E]"
                   >
-                    Women&apos;s Mini
+ 
+                    Women's Mini
+ 
                   </a>
                   <a
                     href="#"
                     className="block text-[#FF5733] hover:text-[#E64A2E]"
                   >
-                    Women&apos;s Midi
+ 
+                    Women's Midi
+ 
                   </a>
                   <a
                     href="#"
                     className="block text-[#FF5733] hover:text-[#E64A2E]"
                   >
-                    Women&apos;s Maxi
+< 
+                    Women's Maxi
+ 
                   </a>
                 </div>
               </div>
@@ -332,9 +350,9 @@ export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
           <div className="flex-1">
             {/* Description */}
             <div className="mb-8">
-              <h1 className="text-2xl font-medium mb-4">
-                Women&apos;s Dresses
-              </h1>
+ 
+              <h1 className="text-2xl font-medium mb-4">Women's Dresses</h1>
+ 
               <p className="text-gray-600">
                 Dress to impress with our stunning collection of women's
                 dresses. Whether you're looking for a show-stopping evening gown

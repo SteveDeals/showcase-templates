@@ -10,7 +10,9 @@ interface SimpleStoreProps {
 export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
   const [selectedCategory, setSelectedCategory] =
     useState<ProductCategory>('all');
-
+ 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+ 
   const filteredProducts =
     selectedCategory === 'all'
       ? products
@@ -99,9 +101,9 @@ export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
             <a
               href="#"
               className="text-gray-500 hover:text-gray-900 text-sm font-medium"
-            >
-              What&apos;s New
-            </a>
+ 
+              New Arrivals
+             </a>
             <a
               href="#"
               className="text-gray-500 hover:text-gray-900 text-sm font-medium"
@@ -149,7 +151,9 @@ export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
         {/* Title and Count */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-normal text-gray-900">
-            Women&apos;s Clothing & Accessories
+ 
+            Women's Clothing & Accessories
+ 
           </h1>
           <p className="text-sm text-gray-500">
             {filteredProducts.length} Products

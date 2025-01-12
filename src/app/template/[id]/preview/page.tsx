@@ -1,8 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
-import { SimpleStore } from "../../../../components/templates/SimpleStore";
+import React from 'react';
+import { SimpleStore } from '../../../../components/templates/SimpleStore';
+import { products } from '../../../../mock-data/products';
 
 export default function TemplatePreview() {
-  return <SimpleStore />;
+  return <SimpleStore products={products} isPreview={true} />;
 }

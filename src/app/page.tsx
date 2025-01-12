@@ -6,7 +6,7 @@ import { templateList } from '../mock-data/templates';
 import { products } from '../mock-data/products';
 import { TemplatePreview } from '../components/TemplatePreview';
 
-type Category = (typeof templateList.categories)[number];
+type Category = (typeof templateList.categories)[number] | 'all';
 
 export default function Home() {
   const router = useRouter();

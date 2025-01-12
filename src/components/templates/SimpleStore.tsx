@@ -5,18 +5,27 @@ import { Product, ProductCategory } from '../../types/product';
 
 interface SimpleStoreProps {
   products: Product[];
+  isPreview?: boolean;
 }
 
-export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
+export const SimpleStore: React.FC<SimpleStoreProps> = ({
+  products,
+  isPreview,
+}) => {
   const [selectedCategory, setSelectedCategory] =
     useState<ProductCategory>('all');
- 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
- 
+
   const filteredProducts =
     selectedCategory === 'all'
       ? products
       : products.filter((product) => product.category === selectedCategory);
+
+  const renderLink = (href: string, children: React.ReactNode) => {
+    if (isPreview) {
+      return <div className="cursor-pointer">{children}</div>;
+    }
+    return <a href={href}>{children}</a>;
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -24,7 +33,10 @@ export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
       <div className="bg-[#513B35] text-white text-center py-2 px-4">
         <p className="text-sm">
           Sale of the Year Starts Now: Up to 70% off.{' '}
-          <button className="underline hover:no-underline">Shop Now</button>
+          {renderLink(
+            '#',
+            <span className="underline hover:no-underline">Shop Now</span>
+          )}
         </p>
       </div>
 
@@ -34,106 +46,44 @@ export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
           <div className="flex items-center justify-between h-16">
             {/* Primary Nav */}
             <div className="flex space-x-8">
-              <a
-                href="#"
-                className="text-gray-900 hover:text-gray-500 px-3 py-2 text-sm font-medium border-b-2 border-black"
-              >
-                Women
-              </a>
-              <a
-                href="#"
-                className="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-              >
-                Men
-              </a>
-              <a
-                href="#"
-                className="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium"
-              >
-                About
-              </a>
+              {renderLink(
+                '#',
+                <span className="text-gray-900 hover:text-gray-500 px-3 py-2 text-sm font-medium border-b-2 border-black">
+                  Women
+                </span>
+              )}
+              {renderLink(
+                '#',
+                <span className="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                  Men
+                </span>
+              )}
+              {renderLink(
+                '#',
+                <span className="text-gray-500 hover:text-gray-900 px-3 py-2 text-sm font-medium">
+                  About
+                </span>
+              )}
             </div>
 
             {/* Logo */}
             <div className="text-2xl font-bold">SIMPLE STORE</div>
 
             {/* Right Nav */}
-            <div className="flex items-center space-x-4">
-              <button className="text-gray-500 hover:text-gray-900">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </button>
-              <button className="text-gray-500 hover:text-gray-900">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-              </button>
+            <div className="flex space-x-8">
+              {renderLink(
+                '#',
+                <span className="text-gray-500 hover:text-gray-900 text-sm font-medium">
+                  What&apos;s New
+                </span>
+              )}
+              {renderLink(
+                '#',
+                <span className="text-gray-500 hover:text-gray-900 text-sm font-medium">
+                  Best Sellers
+                </span>
+              )}
             </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Secondary Navigation */}
-      <nav className="border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex space-x-8 py-4">
-            <a
-              href="#"
-              className="text-gray-500 hover:text-gray-900 text-sm font-medium"
- 
-              New Arrivals
-             </a>
-            <a
-              href="#"
-              className="text-gray-500 hover:text-gray-900 text-sm font-medium"
-            >
-              Best Sellers
-            </a>
-            <a
-              href="#"
-              className="text-gray-500 hover:text-gray-900 text-sm font-medium"
-            >
-              Clothing
-            </a>
-            <a
-              href="#"
-              className="text-gray-500 hover:text-gray-900 text-sm font-medium"
-            >
-              Shoes
-            </a>
-            <a
-              href="#"
-              className="text-gray-500 hover:text-gray-900 text-sm font-medium"
-            >
-              Accessories
-            </a>
-            <a
-              href="#"
-              className="text-red-500 hover:text-red-600 text-sm font-medium"
-            >
-              Sale
-            </a>
           </div>
         </div>
       </nav>
@@ -141,9 +91,7 @@ export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Breadcrumb */}
         <div className="flex items-center space-x-2 text-sm text-gray-500 mb-6">
-          <a href="#" className="hover:text-gray-900">
-            Home
-          </a>
+          {renderLink('#', <span className="hover:text-gray-900">Home</span>)}
           <span>/</span>
           <span className="text-gray-900">Women</span>
         </div>
@@ -151,9 +99,7 @@ export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
         {/* Title and Count */}
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-normal text-gray-900">
- 
-            Women's Clothing & Accessories
- 
+            Women&apos;s Clothing & Accessories
           </h1>
           <p className="text-sm text-gray-500">
             {filteredProducts.length} Products
@@ -164,40 +110,26 @@ export const SimpleStore: React.FC<SimpleStoreProps> = ({ products }) => {
           {/* Sidebar */}
           <div className="w-64 flex-shrink-0">
             <div className="space-y-6">
-              {/* Category Filter */}
+              {/* Categories */}
               <div>
                 <h3 className="text-sm font-medium text-gray-900 mb-4">
-                  Category
+                  Categories
                 </h3>
                 <div className="space-y-2">
                   {categories.map((category) => (
                     <button
                       key={category}
                       onClick={() => setSelectedCategory(category)}
-                      className={`block w-full text-left px-2 py-1 text-sm ${
+                      className={`block text-sm ${
                         selectedCategory === category
                           ? 'text-gray-900 font-medium'
                           : 'text-gray-500 hover:text-gray-900'
                       }`}
                     >
-                      {category.charAt(0).toUpperCase() + category.slice(1)}
+                      {category}
                     </button>
                   ))}
                 </div>
-              </div>
-
-              {/* Color Filter */}
-              <div>
-                <h3 className="text-sm font-medium text-gray-900 mb-4">
-                  Color
-                </h3>
-                {/* Add color filters here */}
-              </div>
-
-              {/* Size Filter */}
-              <div>
-                <h3 className="text-sm font-medium text-gray-900 mb-4">Size</h3>
-                {/* Add size filters here */}
               </div>
             </div>
           </div>

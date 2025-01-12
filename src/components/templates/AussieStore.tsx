@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
- 
 import { Product } from '../../types/product';
- 
 import Image from 'next/image';
 
 interface AussieStoreProps {
   products: Product[];
+  isPreview?: boolean;
 }
 
 type SortOption =
@@ -17,10 +16,11 @@ type SortOption =
   | 'popular';
 type ViewOption = 16 | 32 | 64 | 128;
 
-export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
- 
+export const AussieStore: React.FC<AussieStoreProps> = ({
+  products,
+  isPreview,
+}) => {
   const [selectedCategory] = useState('all');
- 
   const [sortBy, setSortBy] = useState<SortOption>('newest');
   const [itemsPerPage, setItemsPerPage] = useState<ViewOption>(32);
   const [selectedSizes, setSelectedSizes] = useState<string[]>([]);
@@ -28,6 +28,13 @@ export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
     min: 0,
     max: 1000,
   });
+
+  const renderLink = (href: string, children: React.ReactNode) => {
+    if (isPreview) {
+      return <div className="cursor-pointer">{children}</div>;
+    }
+    return <a href={href}>{children}</a>;
+  };
 
   // Filter products based on selected criteria
   const filteredProducts = products.filter((product) => {
@@ -66,12 +73,14 @@ export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
         <div className="max-w-7xl mx-auto px-4 py-1 flex justify-between items-center">
           <span>Annandale</span>
           <div className="flex items-center space-x-4">
-            <a href="#" className="hover:text-gray-200">
-              Gift certificates
-            </a>
-            <a href="#" className="hover:text-gray-200">
-              Become a seller
-            </a>
+            {renderLink(
+              '#',
+              <span className="hover:text-gray-200">Gift certificates</span>
+            )}
+            {renderLink(
+              '#',
+              <span className="hover:text-gray-200">Become a seller</span>
+            )}
             <span>(A$)</span>
           </div>
         </div>
@@ -202,27 +211,29 @@ export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
         <nav className="text-sm mb-6">
           <ol className="flex items-center space-x-2">
             <li>
-              <a href="#" className="text-[#FF5733] hover:text-[#E64A2E]">
-                Home
-              </a>
+              {renderLink(
+                '#',
+                <span className="text-[#FF5733] hover:text-[#E64A2E]">
+                  Home
+                </span>
+              )}
             </li>
             <li>
               <span className="text-gray-400">/</span>
             </li>
             <li>
-              <a href="#" className="text-[#FF5733] hover:text-[#E64A2E]">
- 
-                Women's Fashion
- 
-              </a>
+              {renderLink(
+                '#',
+                <span className="text-[#FF5733] hover:text-[#E64A2E]">
+                  Women&apos;s Fashion
+                </span>
+              )}
             </li>
             <li>
               <span className="text-gray-400">/</span>
             </li>
             <li>
- 
-              <span className="text-gray-900">Women's Dresses</span>
- 
+              <span className="text-gray-900">Women&apos;s Dresses</span>
             </li>
           </ol>
         </nav>
@@ -234,46 +245,36 @@ export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
               <div className="border-b pb-4">
                 <h2 className="text-lg font-medium mb-4">Subcategories</h2>
                 <div className="space-y-2">
-                  <a
-                    href="#"
-                    className="block text-[#FF5733] hover:text-[#E64A2E]"
-                  >
- 
-                    Women's Casual
- 
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-[#FF5733] hover:text-[#E64A2E]"
-                  >
- 
-                    Women's Formal
- 
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-[#FF5733] hover:text-[#E64A2E]"
-                  >
- 
-                    Women's Mini
- 
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-[#FF5733] hover:text-[#E64A2E]"
-                  >
- 
-                    Women's Midi
- 
-                  </a>
-                  <a
-                    href="#"
-                    className="block text-[#FF5733] hover:text-[#E64A2E]"
-                  >
-< 
-                    Women's Maxi
- 
-                  </a>
+                  {renderLink(
+                    '#',
+                    <span className="block text-[#FF5733] hover:text-[#E64A2E]">
+                      Women&apos;s Casual
+                    </span>
+                  )}
+                  {renderLink(
+                    '#',
+                    <span className="block text-[#FF5733] hover:text-[#E64A2E]">
+                      Women&apos;s Formal
+                    </span>
+                  )}
+                  {renderLink(
+                    '#',
+                    <span className="block text-[#FF5733] hover:text-[#E64A2E]">
+                      Women&apos;s Mini
+                    </span>
+                  )}
+                  {renderLink(
+                    '#',
+                    <span className="block text-[#FF5733] hover:text-[#E64A2E]">
+                      Women&apos;s Midi
+                    </span>
+                  )}
+                  {renderLink(
+                    '#',
+                    <span className="block text-[#FF5733] hover:text-[#E64A2E]">
+                      Women&apos;s Maxi
+                    </span>
+                  )}
                 </div>
               </div>
 
@@ -350,14 +351,14 @@ export const AussieStore: React.FC<AussieStoreProps> = ({ products }) => {
           <div className="flex-1">
             {/* Description */}
             <div className="mb-8">
- 
-              <h1 className="text-2xl font-medium mb-4">Women's Dresses</h1>
- 
+              <h1 className="text-2xl font-medium mb-4">
+                Women&apos;s Dresses
+              </h1>
               <p className="text-gray-600">
-                Dress to impress with our stunning collection of women's
-                dresses. Whether you're looking for a show-stopping evening gown
-                or a casual day dress, we have a wide range of styles to suit
-                every occasion.
+                Dress to impress with our stunning collection of women&apos;s
+                dresses. Whether you&apos;re looking for a show-stopping evening
+                gown or a casual day dress, we have a wide range of styles to
+                suit every occasion.
               </p>
             </div>
 

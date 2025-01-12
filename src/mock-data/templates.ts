@@ -2,7 +2,7 @@ import { Template } from '../types/template';
 
 export const templateList: {
   templates: Template[];
-  categories: readonly ['modern', 'minimal', 'classic', 'bold'];
+  categories: readonly ['all', 'modern', 'minimal', 'classic', 'bold'];
 } = {
   templates: [
     {
@@ -114,5 +114,5 @@ export const templateList: {
       },
     },
   ],
-  categories: ['modern', 'minimal', 'classic', 'bold'] as const,
+  categories: ['all', 'modern', 'minimal', 'classic', 'bold'] as const,
 };
